@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WordGenerator : MonoBehaviour
 {
     [SerializeField] private List<string> wordSamples;
     [SerializeField] private List<Slot> slotList;
+    [SerializeField] private GameObject uiHintPrefab;
+    [SerializeField] private GameObject uiParentPrefab;
+    [SerializeField] private Transform hintParent;
     private List<char> charList = new List<char>();
     private List<char> inputCharList = new List<char>();
 
@@ -45,7 +49,7 @@ public class WordGenerator : MonoBehaviour
             if (char.IsLetter(c))
             {
                 if (inputCharList.Contains(c))
-                    return;
+                    continue;
                 slotList[inputCharList.Count].UpdateText(c);
                 inputCharList.Add(c);
                 if (inputCharList.Count >= 5)
@@ -58,19 +62,25 @@ public class WordGenerator : MonoBehaviour
 
     private void ProcessInput()
     {
-        for(int i = 0; i < inputCharList.Count; i++)
+        GameObject currentUIParent = Instantiate(uiParentPrefab, hintParent);
+        for (int i = 0; i < inputCharList.Count; i++)
         {
-            if(inputCharList[i] == charList[i])
+            GameObject hintInstance = Instantiate(uiHintPrefab, currentUIParent.transform);
+            hintInstance.GetComponent<UISlotHint>().hintText.text = inputCharList[i].ToString();
+            if (inputCharList[i] == charList[i])
             {
                 slotList[i].ChangeSlotColour(Color.green);
+                hintInstance.GetComponent<Image>().color = Color.green;
             }
             else if (charList.Contains(inputCharList[i]))
             {
                 slotList[i].ChangeSlotColour(Color.yellow);
+                hintInstance.GetComponent<Image>().color = Color.yellow;
             }
             else
             {
                 slotList[i].ChangeSlotColour(Color.red);
+                hintInstance.GetComponent<Image>().color = Color.red;
             }
         }
         inputCharList.Clear();
