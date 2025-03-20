@@ -34,7 +34,7 @@ public class WordGenerator : MonoBehaviour
         for (int i = 0; i < targetString.Length; i++)
         {
             char character = targetString[i];
-            charList.Add(character);
+            charList.Add(char.ToLower(character));
         }
     }
 
