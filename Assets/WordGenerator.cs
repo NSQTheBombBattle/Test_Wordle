@@ -25,10 +25,7 @@ public class WordGenerator : MonoBehaviour
         CheckInput();
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            for(int i = 0; i < slotList.Count; i++)
-            {
-                slotList[i].ResetSlot();
-            }
+            ResetSlots();
         }
     }
 
@@ -84,5 +81,14 @@ public class WordGenerator : MonoBehaviour
             }
         }
         inputCharList.Clear();
+        ResetSlots();
+    }
+
+    private void ResetSlots()
+    {
+        for (int i = 0; i < slotList.Count; i++)
+        {
+            slotList[i].ResetSlot();
+        }
     }
 }
