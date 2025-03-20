@@ -33,7 +33,7 @@ public class WordGenerator : MonoBehaviour
         for (int i = 0; i < targetString.Length; i++)
         {
             char character = targetString[i];
-            slotList[i].textObject.text = character.ToString();
+            slotList[i].UpdateText(character);
             charList.Add(character);
         }
     }
