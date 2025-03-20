@@ -66,17 +66,14 @@ public class WordGenerator : MonoBehaviour
             hintInstance.GetComponent<UISlotHint>().hintText.text = inputCharList[i].ToString();
             if (inputCharList[i] == charList[i])
             {
-                slotList[i].ChangeSlotColour(Color.green);
                 hintInstance.GetComponent<Image>().color = Color.green;
             }
             else if (charList.Contains(inputCharList[i]))
             {
-                slotList[i].ChangeSlotColour(Color.yellow);
                 hintInstance.GetComponent<Image>().color = Color.yellow;
             }
             else
             {
-                slotList[i].ChangeSlotColour(Color.red);
                 hintInstance.GetComponent<Image>().color = Color.red;
             }
         }
