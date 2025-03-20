@@ -25,7 +25,7 @@ public class WordGenerator : MonoBehaviour
         CheckInput();
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            ResetSlots();
+            //ResetSlots();
         }
     }
 
@@ -58,6 +58,7 @@ public class WordGenerator : MonoBehaviour
 
     private void ProcessInput()
     {
+        int correctCharCount = 0;
         GameObject currentUIParent = Instantiate(uiParentPrefab, hintParent);
         for (int i = 0; i < inputCharList.Count; i++)
         {
@@ -66,6 +67,7 @@ public class WordGenerator : MonoBehaviour
             if (inputCharList[i] == charList[i])
             {
                 hintInstance.GetComponent<Image>().color = Color.green;
+                correctCharCount += 1;
             }
             else if (charList.Contains(inputCharList[i]))
             {
@@ -75,6 +77,10 @@ public class WordGenerator : MonoBehaviour
             {
                 hintInstance.GetComponent<Image>().color = Color.red;
             }
+        }
+        if(correctCharCount == charList.Count)
+        {
+            Win();
         }
         inputCharList.Clear();
         ResetSlots();
@@ -86,5 +92,10 @@ public class WordGenerator : MonoBehaviour
         {
             slotList[i].ResetSlot();
         }
+    }
+
+    private void Win()
+    {
+        Debug.Log("You found the word!");
     }
 }
