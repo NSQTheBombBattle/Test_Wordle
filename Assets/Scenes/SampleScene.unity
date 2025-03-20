@@ -522,6 +522,9 @@ MonoBehaviour:
   - Eight
   - Third
   - Stink
+  - Brown
+  - White
+  - Black
   slotList:
   - {fileID: 2112161530}
   - {fileID: 66337236}
@@ -594,6 +597,10 @@ PrefabInstance:
     - target: {fileID: 4080714472263565063, guid: 178ee92154217e547b9609aad145a863, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7670653888264871515, guid: 178ee92154217e547b9609aad145a863, type: 3}
+      propertyPath: currentChar
+      value: 116
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
