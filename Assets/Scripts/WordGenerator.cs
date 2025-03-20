@@ -29,7 +29,7 @@ public class WordGenerator : MonoBehaviour
         CheckInput();
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            //ResetSlots();
+            PickRandomWord();
         }
     }
 
@@ -49,6 +49,13 @@ public class WordGenerator : MonoBehaviour
 
     private void PickRandomWord()
     {
+        ResetSlots();
+        charList.Clear();
+        inputCharList.Clear();
+        for (int i = hintParent.childCount - 1; i >= 0; i--)
+        {
+            GameObject.Destroy(hintParent.GetChild(i).gameObject);
+        }
         string targetString = wordSamples[Random.Range(0, wordSamples.Count)];
         for (int i = 0; i < targetString.Length; i++)
         {
@@ -115,5 +122,10 @@ public class WordGenerator : MonoBehaviour
     private void Win()
     {
         Debug.Log("You found the word!");
+    }
+
+    private void ReplayLevel()
+    {
+
     }
 }
