@@ -42,7 +42,7 @@ public class WordGenerator : MonoBehaviour
     {
         foreach (char c in Input.inputString)
         {
-            if (char.IsLetter(c)) // Check if the input is a letter
+            if (char.IsLetter(c))
             {
                 if (inputCharList.Contains(c))
                     return;
