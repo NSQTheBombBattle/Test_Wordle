@@ -5,8 +5,9 @@ using TMPro;
 
 public class Slot : MonoBehaviour
 {
+    public SpriteRenderer spriteRenderer;
     public TMP_Text textObject;
-    private char currentChar;
+    public char currentChar;
 
     // Start is called before the first frame update
     void Start()
@@ -24,5 +25,16 @@ public class Slot : MonoBehaviour
     {
         currentChar = textToUpdate;
         textObject.text = textToUpdate.ToString();
+    }
+
+    public void ChangeSlotColour(Color colourToChange)
+    {
+        spriteRenderer.color = colourToChange;
+    }
+
+    public void ResetSlot()
+    {
+        UpdateText('\0');
+        ChangeSlotColour(Color.white);
     }
 }

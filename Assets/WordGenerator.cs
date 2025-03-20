@@ -18,11 +18,12 @@ public class WordGenerator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        foreach (char c in Input.inputString)
+        CheckInput();
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (char.IsLetter(c)) // Check if the input is a letter
+            for(int i = 0; i < slotList.Count; i++)
             {
-                inputCharList.Add(c);
+                slotList[i].ResetSlot();
             }
         }
     }
@@ -33,8 +34,45 @@ public class WordGenerator : MonoBehaviour
         for (int i = 0; i < targetString.Length; i++)
         {
             char character = targetString[i];
-            slotList[i].UpdateText(character);
             charList.Add(character);
         }
+    }
+
+    private void CheckInput()
+    {
+        foreach (char c in Input.inputString)
+        {
+            if (char.IsLetter(c)) // Check if the input is a letter
+            {
+                if (inputCharList.Contains(c))
+                    return;
+                slotList[inputCharList.Count].UpdateText(c);
+                inputCharList.Add(c);
+                if (inputCharList.Count >= 5)
+                {
+                    ProcessInput();
+                }
+            }
+        }
+    }
+
+    private void ProcessInput()
+    {
+        for(int i = 0; i < inputCharList.Count; i++)
+        {
+            if(inputCharList[i] == charList[i])
+            {
+                slotList[i].ChangeSlotColour(Color.green);
+            }
+            else if (charList.Contains(inputCharList[i]))
+            {
+                slotList[i].ChangeSlotColour(Color.yellow);
+            }
+            else
+            {
+                slotList[i].ChangeSlotColour(Color.red);
+            }
+        }
+        inputCharList.Clear();
     }
 }
