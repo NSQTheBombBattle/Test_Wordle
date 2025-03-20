@@ -761,6 +761,9 @@ MonoBehaviour:
   - {fileID: 731825318}
   - {fileID: 349735901}
   - {fileID: 1773775553}
+  uiHintPrefab: {fileID: 8702379289322548238, guid: 8cf1cb99cbfe7e94ba28c4a8b375b1a9, type: 3}
+  uiParentPrefab: {fileID: 6717133736195543605, guid: c054b5dd4958b0b46bc959fa48ebf0eb, type: 3}
+  hintParent: {fileID: 1241841816}
 --- !u!4 &1722390074
 Transform:
   m_ObjectHideFlags: 0
