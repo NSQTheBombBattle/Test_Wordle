@@ -43,16 +43,15 @@ public class WordGenerator : MonoBehaviour
     {
         foreach (char c in Input.inputString)
         {
-            if (char.IsLetter(c))
+            if (!char.IsLetter(c))
+                continue;
+            if (inputCharList.Contains(c))
+                continue;
+            slotList[inputCharList.Count].UpdateText(c);
+            inputCharList.Add(c);
+            if (inputCharList.Count >= 5)
             {
-                if (inputCharList.Contains(c))
-                    continue;
-                slotList[inputCharList.Count].UpdateText(c);
-                inputCharList.Add(c);
-                if (inputCharList.Count >= 5)
-                {
-                    ProcessInput();
-                }
+                ProcessInput();
             }
         }
     }
