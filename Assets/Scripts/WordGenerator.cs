@@ -11,7 +11,7 @@ public class WordGenerator : MonoBehaviour
     [SerializeField] private GameObject uiHintPrefab;
     [SerializeField] private GameObject uiParentPrefab;
     [SerializeField] private Transform hintParent;
-
+    private const int CHAR_LENGTH = 5;
     private List<string> wordSamples = new List<string>();
     private List<char> charList = new List<char>();
     private List<char> inputCharList = new List<char>();
@@ -57,7 +57,7 @@ public class WordGenerator : MonoBehaviour
             GameObject.Destroy(hintParent.GetChild(i).gameObject);
         }
         string targetString = wordSamples[Random.Range(0, wordSamples.Count)];
-        for (int i = 0; i < targetString.Length; i++)
+        for (int i = 0; i < CHAR_LENGTH; i++)
         {
             char character = targetString[i];
             charList.Add(char.ToLower(character));
@@ -74,7 +74,7 @@ public class WordGenerator : MonoBehaviour
                 continue;
             slotList[inputCharList.Count].UpdateText(c);
             inputCharList.Add(c);
-            if (inputCharList.Count >= 5)
+            if (inputCharList.Count >= CHAR_LENGTH)
             {
                 ProcessInput();
             }
@@ -103,7 +103,7 @@ public class WordGenerator : MonoBehaviour
                 hintInstance.GetComponent<Image>().color = Color.red;
             }
         }
-        if(correctCharCount == charList.Count)
+        if(correctCharCount == CHAR_LENGTH)
         {
             Win();
         }
