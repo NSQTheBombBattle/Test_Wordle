@@ -123,9 +123,4 @@ public class WordGenerator : MonoBehaviour
     {
         Debug.Log("You found the word!");
     }
-
-    private void ReplayLevel()
-    {
-
-    }
 }
