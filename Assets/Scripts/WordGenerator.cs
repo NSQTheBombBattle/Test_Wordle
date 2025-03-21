@@ -1,21 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class WordGenerator : MonoBehaviour
 {
-    [SerializeField] private List<string> wordSamples;
     [SerializeField] private List<Slot> slotList;
     [SerializeField] private GameObject uiHintPrefab;
     [SerializeField] private GameObject uiParentPrefab;
     [SerializeField] private Transform hintParent;
+
+    private List<string> wordSamples = new List<string>();
     private List<char> charList = new List<char>();
     private List<char> inputCharList = new List<char>();
 
     // Start is called before the first frame update
     void Start()
     {
+        ReadTextFile();
         PickRandomWord();
     }
 
@@ -26,6 +30,25 @@ public class WordGenerator : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             //ResetSlots();
+        }
+    }
+
+    private void ReadTextFile()
+    {
+        TextAsset textAsset = Resources.Load<TextAsset>("Words"); // No extension!
+        if (textAsset != null)
+        {
+            string[] lines = textAsset.text.Split('\n'); // Convert to string array
+            wordSamples = new List<string>(lines);
+
+            foreach (string word in wordSamples)
+            {
+                Debug.Log(word.Trim()); // Trim to remove extra spaces or newlines
+            }
+        }
+        else
+        {
+            Debug.LogError("Words.txt not found in Resources folder!");
         }
     }
 
