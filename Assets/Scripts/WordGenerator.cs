@@ -35,16 +35,11 @@ public class WordGenerator : MonoBehaviour
 
     private void ReadTextFile()
     {
-        TextAsset textAsset = Resources.Load<TextAsset>("Words"); // No extension!
+        TextAsset textAsset = Resources.Load<TextAsset>("Words");
         if (textAsset != null)
         {
             string[] lines = textAsset.text.Split(new[] { "\r\n", "\n" }, System.StringSplitOptions.RemoveEmptyEntries);
             wordSamples = new List<string>(lines);
-
-            foreach (string word in wordSamples)
-            {
-                Debug.Log(word.Trim()); // Trim to remove extra spaces or newlines
-            }
         }
         else
         {
