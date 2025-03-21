@@ -38,7 +38,7 @@ public class WordGenerator : MonoBehaviour
         TextAsset textAsset = Resources.Load<TextAsset>("Words"); // No extension!
         if (textAsset != null)
         {
-            string[] lines = textAsset.text.Split('\n'); // Convert to string array
+            string[] lines = textAsset.text.Split(new[] { "\r\n", "\n" }, System.StringSplitOptions.RemoveEmptyEntries);
             wordSamples = new List<string>(lines);
 
             foreach (string word in wordSamples)
